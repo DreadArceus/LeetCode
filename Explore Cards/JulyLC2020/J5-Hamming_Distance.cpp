@@ -24,8 +24,7 @@ int main()
 {
   int x, y;
   std::cin >> x >> y;
-  std::vector<int> xb(31);
-  std::vector<int> yb(31);
+  std::vector<int> xb(31), yb(31);
   while(x > 0)
   {
     xb[binarize(x)] = 1;
