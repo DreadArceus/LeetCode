@@ -2,17 +2,19 @@
 #include <string>
 #include <vector>
 using namespace std;
+//The vector solution can be made faster and in lesser space complexity
+//This version fails test case 4 (Runtime Error)
+//be back to see why later -15-July-2020
 string reverseWords(string s)
 {
-  string W = "";
-  vector<string> words;
+  string W = "", rS = "";
   for(int i = 0; i < s.length(); i++)
   {
     if(s[i] == ' ')
     {
       if(W != "")
       {
-        words.push_back(W);
+        rS.insert(0, W + " ");
         W = "";
       }
     }
@@ -23,17 +25,9 @@ string reverseWords(string s)
   }
   if(W != "")
   {
-    words.push_back(W);
+    rS.insert(0, W + " ");
   }
-  string rS = "";
-  for(int i = 0; i < words.size(); i++)
-  {
-    rS += words[words.size() - 1 - i];
-    if(i != words.size() - 1)
-    {
-      rS += " ";
-    }
-  }
+  rS.pop_back();
   return rS;
 }
 int main()
