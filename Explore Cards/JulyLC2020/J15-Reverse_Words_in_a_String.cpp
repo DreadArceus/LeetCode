@@ -8,9 +8,9 @@ using namespace std;
 string reverseWords(string s)
 {
   string W = "", rS = "";
-  for(int i = 0; i < s.length(); i++)
+  for(char c : s)
   {
-    if(s[i] == ' ')
+    if(c == ' ')
     {
       if(W != "")
       {
@@ -20,7 +20,7 @@ string reverseWords(string s)
     }
     else
     {
-      W += s[i];
+      W += c;
     }
   }
   if(W != "")
