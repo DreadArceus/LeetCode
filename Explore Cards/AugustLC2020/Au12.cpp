@@ -4,6 +4,8 @@
   3. Using C(n, r) to make the pascal triangle row.
       *Further optimisation, store n! before calculating C(n, r)
       **long long cant store big factorials(>20), gonna try this method later.
+  4. Most efficient method is to derive a formula for any term in the Pascal's triangle.
+    ~~To Be Continued~~
 */
 #include <iostream>
 #include <vector>
