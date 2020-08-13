@@ -2,29 +2,32 @@
   1. Make the Pascal's triangle, return the kth row [O(K*K) space]
   2. Using 2 1D vectors, store the last pascal triangle row and calculate the next.
   3. Using C(n, r) to make the pascal triangle row.
+      *Further optimisation, store n! before calculating C(n, r)
+      **long long cant store big factorials(>20), gonna try this method later.
 */
 #include <iostream>
 #include <vector>
 using namespace std;
-int fac(int n)
+long long fac(int n)
 {
-  int ans = 1;
+  long long ans = 1;
   for(int i = 2; i <= n; i++)
   {
     ans *= i;
   }
   return ans;
 }
-int C(int n, int r)
+int C(long long nF, int n, int r)
 {
-  return fac(n) / (fac(r) * fac(n - r));
+  return nF / (fac(r) * fac(n - r));
 }
 vector<int> solve(int rowIndex)
 {
   vector<int> ans(rowIndex + 1);
+  long long nFac = fac(rowIndex);
   for(int i = 0; i < ans.size(); i++)
   {
-    ans[i] = C(rowIndex, i);
+    ans[i] = C(nFac, rowIndex, i);
   }
   return ans;
 }
