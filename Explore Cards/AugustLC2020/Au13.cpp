@@ -1,4 +1,4 @@
-//Version 1: Made a Permutation Iterator x.x
+//Version 0.1: Made a Permutation Iterator x.x
 #include <iostream>
 #include <string>
 #include <algorithm>
