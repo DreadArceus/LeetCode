@@ -1,26 +1,32 @@
+/*Did this by the following methods:
+  1. Make the Pascal's triangle, return the kth row [O(K*K) space]
+  2. Using 2 1D vectors, store the last pascal triangle row and calculate the next.
+  3. Using C(n, r) to make the pascal triangle row.
+*/
 #include <iostream>
 #include <vector>
 using namespace std;
+int fac(int n)
+{
+  int ans = 1;
+  for(int i = 2; i <= n; i++)
+  {
+    ans *= i;
+  }
+  return ans;
+}
+int C(int n, int r)
+{
+  return fac(n) / (fac(r) * fac(n - r));
+}
 vector<int> solve(int rowIndex)
 {
-  pair<vector<int>, vector<int>> pT = {{1}, {1, 1}};
-  if(rowIndex == 0)
+  vector<int> ans(rowIndex + 1);
+  for(int i = 0; i < ans.size(); i++)
   {
-    return pT.first;
+    ans[i] = C(rowIndex, i);
   }
-  for(int i = 2; i <= rowIndex; i++)
-  {
-    pT.first = pT.second;
-    pT.second.clear();
-    pT.second.resize(pT.first.size() + 1);
-    pT.second[0] = 1;
-    pT.second[pT.second.size() - 1] = 1;
-    for(int j = 1; j < pT.second.size() - 1; j++)
-    {
-      pT.second[j] = pT.first[j - 1] + pT.first[j];
-    }
-  }
-  return pT.second;
+  return ans;
 }
 int main()
 {
