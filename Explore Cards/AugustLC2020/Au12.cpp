@@ -3,19 +3,24 @@
 using namespace std;
 vector<int> solve(int rowIndex)
 {
-  vector<vector<int>> pT = {{1}, {1, 1}};
+  pair<vector<int>, vector<int>> pT = {{1}, {1, 1}};
+  if(rowIndex == 0)
+  {
+    return pT.first;
+  }
   for(int i = 2; i <= rowIndex; i++)
   {
-    vector<int> row(pT[i-1].size() + 1);
-    row[0] = 1;
-    row[row.size() - 1] = 1;
-    for(int j = 1; j < row.size() - 1; j++)
+    pT.first = pT.second;
+    pT.second.clear();
+    pT.second.resize(pT.first.size() + 1);
+    pT.second[0] = 1;
+    pT.second[pT.second.size() - 1] = 1;
+    for(int j = 1; j < pT.second.size() - 1; j++)
     {
-      row[j] = pT[i - 1][j - 1] + pT[i - 1][j];
+      pT.second[j] = pT.first[j - 1] + pT.first[j];
     }
-    pT.push_back(row);
   }
-  return pT[rowIndex];
+  return pT.second;
 }
 int main()
 {
