@@ -1,24 +1,30 @@
 //v1: Brute Force or Linear Search i guess, 48/61 cases
-//Apparently binary search can make this faster
+//v2: Binary Search
 #include <iostream>
 #include <vector>
 #include <cmath>
 using namespace std;
 int solve(vector<int> nums, int threshold)
 {
-    for(double x = 1; ; x++)
+    long long l = 1, r = INT32_MAX;
+    while(r != l + 1)
     {
+        int m = (l + r - 1) / 2;
         int sum = 0;
         for(int i = 0; i < nums.size(); i++)
         {
-            sum += ceil(nums[i]/x);
+            sum += ceil(nums[i]/(double)m);
         }
-        if(sum <= threshold)
+        if(sum > threshold)
         {
-            return x;
+            l = m + 1;
+        }
+        else
+        {
+            r = m;
         }
     }
-    return -1;
+    return l;
 }
 int main()
 {
